@@ -8,7 +8,7 @@ export default function Home() {
     <main className={styles.main}>
       <div className={styles.description}>
         <p>
-          Simpe Next.js + Frongegg App
+          Simpe Next.js + Frontegg App
         </p>
         <div>
           <a
