@@ -1,6 +1,6 @@
 import { AppProps } from "next/app";
 import { withFronteggApp } from "@frontegg/nextjs/pages";
-import CustomNavbar from "@/components/Navbar";
+import CustomNavbar from "@/components/AppNavbar";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "@/styles/globals.css";
 
