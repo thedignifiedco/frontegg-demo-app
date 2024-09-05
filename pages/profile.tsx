@@ -31,7 +31,7 @@ const ProfilePage = () => {
       <Card>
         <Card.Body>
           <Row>
-            <Col sm={4} className="profile-picture">
+            <Col sm={5} className="profile-picture">
               <Image
                 src={user.profilePictureUrl ?? "/next.svg"}
                 roundedCircle
@@ -41,8 +41,8 @@ const ProfilePage = () => {
                 alt={user.name}
               />
             </Col>
-            <Col sm={8}>
-              <h2>Welcome, {user.name}</h2>
+            <Col sm={7}>
+              <h2>{user.name}</h2>
               <p>Email: {user.email}</p>
               <p>Email Verified: {JSON.stringify(user.verified)}</p>
               <p>UUID: {user.sub}</p>
@@ -59,14 +59,14 @@ const ProfilePage = () => {
             </Col>
           </Row>
           <Row>
-            <Col sm={4}>
+            <Col sm={5}>
               <h3>Permissions</h3>
               <pre>
                 {JSON.stringify(user.permissions, null, 2)}{" "}
                 {/* Display parsed metadata */}
               </pre>
             </Col>
-            <Col sm={8}>
+            <Col sm={7}>
               <h3>Profile Metadata</h3>
               <pre>
                 {JSON.stringify(parsedMetadata, null, 2)}{" "}
