@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Card, Button, Form, Container } from 'react-bootstrap';
-import { holidayExperiences } from '../data/holidayExperiences';
+import { holidayExperiences } from '@/data/holidayExperiences';
 import { useAuth } from '@frontegg/nextjs';
 import PreferredExperienceModal from '@/components/PreferredExperienceModal';
 
@@ -48,6 +48,7 @@ const HomePage = () => {
 
   return (
     <Container className="mt-5">
+      {user && <h2>Welcome, {user.name}!</h2>}
       {user &&  <PreferredExperienceModal show={showModal} handleClose={handleCloseModal} />}
 
       <Form.Group controlId="experienceFilter">

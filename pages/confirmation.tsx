@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useAuth } from '@frontegg/nextjs';
 import { Container } from 'react-bootstrap';
-import { holidayExperiences } from '../data/holidayExperiences'; // Adjust this path as necessary
+import { holidayExperiences } from '@/data/holidayExperiences'; // Adjust this path as necessary
 
 type Booking = {
   confirmationNumber: string;

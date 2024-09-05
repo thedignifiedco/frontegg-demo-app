@@ -3,8 +3,8 @@ import { getSession } from "@frontegg/nextjs/pages";
 import { useAuth } from "@frontegg/nextjs";
 import { Container, Card, Image, Button, Row, Col } from "react-bootstrap";
 import { useEffect, useState } from "react";
-import PreferredExperienceModal from "../components/PreferredExperienceModal";
-import { AdminPortalButton } from "../components/AdminPortal";
+import PreferredExperienceModal from "@/components/PreferredExperienceModal";
+import { AdminPortalButton } from "@/components/AdminPortal";
 
 const ProfilePage = () => {
   const { user } = useAuth();
