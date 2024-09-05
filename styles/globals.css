@@ -1,0 +1,48 @@
+.row {
+    margin-bottom: 2rem;
+}
+
+nav .d-flex.align-items-center {
+    padding: 0.5rem 0;
+}
+
+nav button.btn.btn-primary {
+    margin-top: 0.5rem !important;
+}
+
+button.btn.btn-primary {
+    margin-top: 0 !important;
+    margin-right: 10px;
+}
+
+pre {
+    background-color: #f5f5f5;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+select#experienceFilter {
+    margin-bottom: 24px;
+}
+
+.card {
+    margin-bottom: 24px;
+}
+
+img.card-img-top {
+    padding: 16px 16px 0;
+    border-radius: 16px;
+}
+
+img.booking-image {
+    border: 2px solid #cccccc;
+    border-radius: 20px;
+}
+
+.list-group-item {
+    padding-top: 1rem;
+}
+
+.profile-picture {
+    text-align: center;
+}
