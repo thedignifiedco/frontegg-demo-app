@@ -1,27 +1,30 @@
 import { useAuth } from "@frontegg/nextjs";
-import { brandingConfig } from "../brandingConfig";
+import useTenantBranding from "@/hooks/useTenantBranding.ts";
 import AppNavbar from "./AppNavbar";
 import { useEffect } from "react";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
-  const { user } = useAuth();
-  const tenantId = user?.tenantId || "defaultTenant"; // Use defaultTenant if tenantId not found
-  const branding = brandingConfig[tenantId] || brandingConfig.defaultTenant; // Fallback to default branding if no match
+  const branding = useTenantBranding();
 
-  // Inject dynamic styles for buttons
   useEffect(() => {
-    const style = document.createElement("style");
-    style.innerHTML = `
-          .btn {
-            background-color: ${branding.secondaryColor} !important;
-            border-color: ${branding.secondaryColor} !important;
-          }
-        `;
-    document.head.appendChild(style);
-    return () => {
-      document.head.removeChild(style); // Clean up when the component unmounts
-    };
-  }, [branding.secondaryColor]);
+    if (branding) {
+      const style = document.createElement('style');
+      style.innerHTML = `
+        .btn {
+          background-color: ${branding.secondaryColor} !important;
+          border-color: ${branding.secondaryColor} !important;
+        }
+      `;
+      document.head.appendChild(style);
+      return () => {
+        document.head.removeChild(style);
+      };
+    }
+  }, [branding]);
+
+  if (!branding) {
+    return <div>Loading...</div>; // Loading state while branding is being fetched
+  }
 
   return (
     <div style={{ backgroundColor: branding.primaryColor }}>
