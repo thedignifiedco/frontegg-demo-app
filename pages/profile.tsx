@@ -62,7 +62,7 @@ const ProfilePage = () => {
             <Col sm={5}>
               <h3>Permissions</h3>
               <pre>
-                {JSON.stringify(user.permissions, null, 2)}{" "}
+                {JSON.stringify(user, null, 2)}{" "}
                 {/* Display parsed metadata */}
               </pre>
             </Col>

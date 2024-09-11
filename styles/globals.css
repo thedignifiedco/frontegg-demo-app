@@ -10,6 +10,10 @@ nav button.btn.btn-primary {
     margin-top: 0.5rem !important;
 }
 
+.navbar-toggler {
+    color: #ffffff!important;
+}
+
 button.btn.btn-primary {
     margin-top: 0 !important;
     margin-bottom: 0.5rem;

@@ -2,7 +2,11 @@ import { Navbar, Nav, Container, Button, Image } from "react-bootstrap";
 import { useRouter } from "next/router";
 import { useAuth } from "@frontegg/nextjs";
 
-const CustomNavbar = () => {
+type AppNavbarProps = {
+  logo: string;
+};
+
+const AppNavbar = ({ logo }: AppNavbarProps) => {
   const { user } = useAuth();
 
   const login = () => {
@@ -29,7 +33,7 @@ const CustomNavbar = () => {
       <Container>
         <Navbar.Brand href="/">
         <Image
-              src="/logo.png"
+              src={logo}
               roundedCircle
               width="80"
               height="80"
@@ -67,4 +71,4 @@ const CustomNavbar = () => {
   );
 };
 
-export default CustomNavbar;
+export default AppNavbar;
