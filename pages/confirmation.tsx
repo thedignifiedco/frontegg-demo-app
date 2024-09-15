@@ -89,7 +89,7 @@ const BookingConfirmation = () => {
   };
 
   return (
-    <Container className="mt-5">
+    <Container className="pt-5 pb-5">
       <h1>Booking Confirmation</h1>
       {title && <p>Booking for: {title}</p>}
       <p>Your booking is confirmed. Your confirmation number is {confirmationNumber}</p>

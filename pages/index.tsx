@@ -47,7 +47,7 @@ const HomePage = () => {
   const handleCloseModal = () => setShowModal(false);
 
   return (
-    <Container className="mt-5">
+    <Container className="pt-5 pb-5">
       {user && <h2>Welcome, {user.name}!</h2>}
       {user &&  <PreferredExperienceModal show={showModal} handleClose={handleCloseModal} />}
 

@@ -1,4 +1,3 @@
-import { useAuth } from "@frontegg/nextjs";
 import useTenantBranding from "@/hooks/useTenantBranding.ts";
 import AppNavbar from "./AppNavbar";
 import { useEffect } from "react";
@@ -29,7 +28,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div style={{ backgroundColor: branding.primaryColor }}>
       <header>
-        <AppNavbar logo={branding.logo} /> {/* Pass the logo to AppNavbar */}
+        <AppNavbar logo={branding.logo} tenantName={branding.name} /> {/* Pass the logo to AppNavbar */}
       </header>
       <main>{children}</main>
     </div>

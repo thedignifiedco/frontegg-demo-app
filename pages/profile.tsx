@@ -5,11 +5,13 @@ import { Container, Card, Image, Button, Row, Col } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import PreferredExperienceModal from "@/components/PreferredExperienceModal";
 import { AdminPortalButton } from "@/components/AdminPortal";
+import { jwtDecode } from "jwt-decode";
 
 const ProfilePage = () => {
   const { user } = useAuth();
   const [showModal, setShowModal] = useState(false);
   const [parsedMetadata, setParsedMetadata] = useState<any>({});
+  const [decodedToken, setDecodedToken] = useState<any>(null);
 
   useEffect(() => {
     if (user?.metadata) {
@@ -21,13 +23,21 @@ const ProfilePage = () => {
     }
   }, [user]);
 
+  // Decode the access token
+  useEffect(() => {
+    if (user?.accessToken) {
+      const decoded = jwtDecode(user.accessToken);
+      setDecodedToken(decoded);
+    }
+  }, [user]);
+
   const handleOpenModal = () => setShowModal(true);
   const handleCloseModal = () => setShowModal(false);
 
   if (!user) return null;
 
   return (
-    <Container className="mt-5">
+    <Container className="pt-5 pb-5">
       <Card>
         <Card.Body>
           <Row>
@@ -72,6 +82,16 @@ const ProfilePage = () => {
                 {JSON.stringify(parsedMetadata, null, 2)}{" "}
                 {/* Display parsed metadata */}
               </pre>
+            </Col>
+          </Row>
+          <Row>
+            <Col sm={12}>
+              <h3>Access Token</h3>
+              <pre>{user.accessToken}</pre>
+            </Col>
+            <Col sm={12}>
+              <h3>Decoded Access Token</h3>
+              <pre>{decodedToken ? JSON.stringify(decodedToken, null, 2) : 'No token available'}</pre>
             </Col>
           </Row>
         </Card.Body>

@@ -4,9 +4,10 @@ import { useAuth } from "@frontegg/nextjs";
 
 type AppNavbarProps = {
   logo: string;
+  tenantName: string;
 };
 
-const AppNavbar = ({ logo }: AppNavbarProps) => {
+const AppNavbar = ({ logo, tenantName }: AppNavbarProps) => {
   const { user } = useAuth();
 
   const login = () => {
@@ -32,20 +33,31 @@ const AppNavbar = ({ logo }: AppNavbarProps) => {
     <Navbar bg="light" expand="lg">
       <Container>
         <Navbar.Brand href="/">
-        <Image
-              src={logo}
-              roundedCircle
-              width="80"
-              height="80"
-              className="me-2"
-              alt="Dignified Travels"
-            />
-            Dignified Travels</Navbar.Brand>
+          <Image
+            src={logo}
+            roundedCircle
+            width="80"
+            height="80"
+            className="me-2"
+            alt="Dignified Travels"
+          />
+          Dignified Travel
+          {isAuthenticated && user ? (
+            <span className="org-name">{tenantName}</span>
+          ) : null}
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/bookings">My Bookings</Nav.Link>
+            {!isAuthenticated && (
+              <Nav.Link
+                href={`${process.env.NEXT_PUBLIC_FRONTEGG_BASE_URL}/oauth/login?organization=alpha-org`}
+              >
+                My Tenant
+              </Nav.Link>
+            )}
           </Nav>
           {isAuthenticated && user ? (
             <div className="d-flex align-items-center">

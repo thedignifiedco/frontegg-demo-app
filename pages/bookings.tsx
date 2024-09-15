@@ -27,7 +27,7 @@ const MyBookings = () => {
   }
 
   return (
-    <Container className="mt-5">
+    <Container className="pt-5 pb-5">
       <h1>My Bookings</h1>
       {bookings.length > 0 ? (
         <ListGroup>

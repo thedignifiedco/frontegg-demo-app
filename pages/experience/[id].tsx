@@ -28,7 +28,7 @@ const ExperienceDetail = ({ experience }: ExperienceDetailProps) => {
   };
 
   return (
-    <Container className="mt-5">
+    <Container className="pt-5 pb-5">
       <Row>
         <Col sm={5}>
           <h1>{experience.title}</h1>

@@ -5,12 +5,14 @@ type TenantBranding = {
   logo: string;
   primaryColor: string;
   secondaryColor: string;
+  name: string;
 };
 
 const defaultTenant = {
   logo: "/logos/logo.png",
   primaryColor: "#F3FCF0",
   secondaryColor: "#540D6E",
+  name: '',
 };
 
 const useTenantBranding = (): TenantBranding | null => {
@@ -39,7 +41,8 @@ const useTenantBranding = (): TenantBranding | null => {
             if (activeTenant && activeTenant.metadata) {
               const parsedMetadata = JSON.parse(activeTenant.metadata); // Parse the stringified metadata
               const { logo = defaultTenant.logo, primaryColor = defaultTenant.primaryColor, secondaryColor = defaultTenant.secondaryColor } = parsedMetadata;
-              setBranding({ logo, primaryColor, secondaryColor });
+              const name = activeTenant.name || defaultTenant.name;
+              setBranding({ logo, primaryColor, secondaryColor, name });
             } else {
               setBranding(defaultTenant); // Use default branding if no metadata
             }

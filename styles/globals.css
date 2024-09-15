@@ -2,6 +2,12 @@
     margin-bottom: 2rem;
 }
 
+nav .org-name {
+    margin-left: 0.5rem;
+    padding-left: 0.5rem;
+    border-left: 1px solid rgb(204, 204, 204);
+}
+
 nav .d-flex.align-items-center {
     padding: 0.5rem 0;
 }
@@ -11,7 +17,7 @@ nav button.btn.btn-primary {
 }
 
 .navbar-toggler {
-    color: #ffffff!important;
+    color: #ffffff !important;
 }
 
 button.btn.btn-primary {
