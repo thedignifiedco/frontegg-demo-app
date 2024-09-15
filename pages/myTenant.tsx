@@ -2,7 +2,7 @@ import { GetServerSideProps } from "next";
 import { getSession } from "@frontegg/nextjs/pages";
 import { useAuth } from "@frontegg/nextjs";
 import { Container, Row, Card } from "react-bootstrap";
-import useTenantBranding from "@/hooks/useTenantBranding.ts";
+import useTenantBranding from "@/hooks/useTenantBranding"
 
 const MyTenant = () => {
   const { user } = useAuth();
