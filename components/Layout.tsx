@@ -1,4 +1,4 @@
-import useTenantBranding from "@/hooks/useTenantBranding.ts";
+import useTenantBranding from "@/hooks/useTenantBranding";
 import AppNavbar from "./AppNavbar";
 import { useEffect } from "react";
 
