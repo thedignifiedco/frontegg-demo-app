@@ -51,12 +51,13 @@ const AppNavbar = ({ logo, tenantName }: AppNavbarProps) => {
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/bookings">My Bookings</Nav.Link>
-            {!isAuthenticated && (
-              <Nav.Link
-                href={`${process.env.NEXT_PUBLIC_FRONTEGG_BASE_URL}/oauth/login?organization=alpha-org`}
-              >
-                My Tenant
-              </Nav.Link>
+            <Nav.Link
+              href={`${process.env.NEXT_PUBLIC_FRONTEGG_BASE_URL}/oauth/login?organization=alpha-org`}
+            >
+              My Organisation
+            </Nav.Link>
+            {isAuthenticated && (
+              <Nav.Link href="/dashboard">Admin Portal</Nav.Link>
             )}
           </Nav>
           {isAuthenticated && user ? (

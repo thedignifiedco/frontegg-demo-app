@@ -28,6 +28,5 @@ export default withFronteggApp(MyApp, {
   hostedLoginBox: true,
   authOptions: {
     // keepSessionAlive: true, // Uncomment this to maintain the session alive
-  },
+  }
 });
-
