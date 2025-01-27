@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import PreferredExperienceModal from "@/components/PreferredExperienceModal";
 import { AdminPortalButton } from "@/components/AdminPortal";
 import { jwtDecode } from "jwt-decode";
+import Link from "next/link";
 
 const ProfilePage = () => {
   const { user } = useAuth();
@@ -41,7 +42,7 @@ const ProfilePage = () => {
       <Card>
         <Card.Body>
           <Row>
-            <Col sm={5} className="profile-picture">
+            <Col sm={6} className="profile-picture">
               <Image
                 src={user.profilePictureUrl ?? "/next.svg"}
                 roundedCircle
@@ -51,12 +52,14 @@ const ProfilePage = () => {
                 alt={user.name}
               />
             </Col>
-            <Col sm={7}>
+            <Col sm={6}>
               <h2>{user.name}</h2>
-              <p>Email: {user.email}</p>
-              <p>Email Verified: {JSON.stringify(user.verified)}</p>
-              <p>UUID: {user.sub}</p>
-              <p>Tenant ID: {user.tenantId}</p>
+              <p><b>Email:</b> {user.email}</p>
+              <p><b>Email Verified:</b> {JSON.stringify(user.verified)}</p>
+              <p><b>User ID:</b> {user.sub}</p>
+              <p><b>Tenant ID:</b> {user.tenantId}</p>
+              <p><b>Company:</b> {(user as any).customClaims?.Company ?? "N/A"}<br />(Response from <Link href={'https://fake-json-api.mock.beeceptor.com/companies'} target="_blank">3rd-party API</Link>)</p>
+              <AdminPortalButton />
               <Button variant="primary" onClick={handleOpenModal}>
                 Update Preferred Experience
               </Button>
@@ -65,18 +68,14 @@ const ProfilePage = () => {
                 show={showModal}
                 handleClose={handleCloseModal}
               />
-              <AdminPortalButton />
             </Col>
           </Row>
           <Row>
-            <Col sm={5}>
-              <h3>Permissions</h3>
-              <pre>
-                {JSON.stringify(user.permissions, null, 2)}{" "}
-                {/* Display parsed metadata */}
-              </pre>
+            <Col sm={6}>
+              <h3>Access Token</h3>
+              <pre>{user.accessToken}</pre>
             </Col>
-            <Col sm={7}>
+            <Col sm={6}>
               <h3>Profile Metadata</h3>
               <pre>
                 {JSON.stringify(parsedMetadata, null, 2)}{" "}
@@ -85,13 +84,16 @@ const ProfilePage = () => {
             </Col>
           </Row>
           <Row>
-            <Col sm={12}>
-              <h3>Access Token</h3>
-              <pre>{user.accessToken}</pre>
-            </Col>
-            <Col sm={12}>
+            <Col sm={6}>
               <h3>Decoded Access Token</h3>
               <pre>{decodedToken ? JSON.stringify(decodedToken, null, 2) : 'No token available'}</pre>
+            </Col>
+            <Col sm={6}>
+              <h3>Permissions</h3>
+              <pre>
+                {JSON.stringify(user.permissions, null, 2)}{" "}
+                {/* Display parsed metadata */}
+              </pre>
             </Col>
           </Row>
         </Card.Body>
