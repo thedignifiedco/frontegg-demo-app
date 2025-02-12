@@ -1,23 +1,29 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "@frontegg/nextjs";
 
-type TenantBranding = {
+export type TenantBranding = {
   logo: string;
   primaryColor: string;
   secondaryColor: string;
   name: string;
 };
 
-const defaultTenant = {
+const defaultTenant: TenantBranding = {
   logo: "/logos/logo.png",
   primaryColor: "#F3FCF0",
   secondaryColor: "#540D6E",
-  name: '',
+  name: "",
 };
 
-const useTenantBranding = (): TenantBranding | null => {
+type UseTenantBrandingResult = {
+  branding: TenantBranding | null;
+  tenantsData: any[];
+};
+
+const useTenantBranding = (): UseTenantBrandingResult => {
   const { user } = useAuth();
   const [branding, setBranding] = useState<TenantBranding | null>(null);
+  const [tenantsData, setTenantsData] = useState<any[]>([]);
 
   useEffect(() => {
     const fetchTenantMetadata = async () => {
@@ -37,10 +43,19 @@ const useTenantBranding = (): TenantBranding | null => {
           if (response.ok) {
             const data = await response.json();
             const activeTenant = data.activeTenant;
+            const tenants = data.tenants;
+            console.log("Fetched tenants:", tenants);
+
+            // Save the full tenants list in state
+            setTenantsData(tenants);
 
             if (activeTenant && activeTenant.metadata) {
               const parsedMetadata = JSON.parse(activeTenant.metadata); // Parse the stringified metadata
-              const { logo = defaultTenant.logo, primaryColor = defaultTenant.primaryColor, secondaryColor = defaultTenant.secondaryColor } = parsedMetadata;
+              const {
+                logo = defaultTenant.logo,
+                primaryColor = defaultTenant.primaryColor,
+                secondaryColor = defaultTenant.secondaryColor,
+              } = parsedMetadata;
               const name = activeTenant.name || defaultTenant.name;
               setBranding({ logo, primaryColor, secondaryColor, name });
             } else {
@@ -50,7 +65,7 @@ const useTenantBranding = (): TenantBranding | null => {
             setBranding(defaultTenant); // Fallback to default branding on error
           }
         } catch (error) {
-          console.error('Error fetching tenant metadata:', error);
+          console.error("Error fetching tenant metadata:", error);
           setBranding(defaultTenant); // Fallback to default branding on error
         }
       } else {
@@ -61,7 +76,7 @@ const useTenantBranding = (): TenantBranding | null => {
     fetchTenantMetadata();
   }, [user]);
 
-  return branding;
+  return { branding, tenantsData };
 };
 
 export default useTenantBranding;

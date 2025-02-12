@@ -3,11 +3,11 @@ import AppNavbar from "./AppNavbar";
 import { useEffect } from "react";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
-  const branding = useTenantBranding();
+  const { branding } = useTenantBranding();
 
   useEffect(() => {
     if (branding) {
-      const style = document.createElement('style');
+      const style = document.createElement("style");
       style.innerHTML = `
         .btn {
           background-color: ${branding.secondaryColor} !important;
@@ -28,7 +28,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div style={{ backgroundColor: branding.primaryColor }}>
       <header>
-        <AppNavbar logo={branding.logo} tenantName={branding.name} /> {/* Pass the logo to AppNavbar */}
+        <AppNavbar />
       </header>
       <main>{children}</main>
     </div>
